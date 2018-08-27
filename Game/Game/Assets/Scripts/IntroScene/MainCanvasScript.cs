@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor;
+using UnityEditor.SceneManagement;
 
 public class MainCanvasScript : MonoBehaviour {
 
@@ -22,6 +24,11 @@ public class MainCanvasScript : MonoBehaviour {
     }
 
     void ExitOnClick() {
+        #if UNITY_EDITOR
+        if(EditorApplication.isPlaying) {
+          UnityEditor.EditorApplication.isPlaying = false;
+        }
+        #endif
         Application.Quit();
     }
 }
