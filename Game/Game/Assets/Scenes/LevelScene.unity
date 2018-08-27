@@ -205,7 +205,7 @@ RectTransform:
   m_Children:
   - {fileID: 796561865}
   m_Father: {fileID: 1626029407}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -394,7 +394,7 @@ RectTransform:
   m_Children:
   - {fileID: 785359098}
   m_Father: {fileID: 1626029407}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -658,7 +658,7 @@ RectTransform:
   m_Children:
   - {fileID: 1857408188}
   m_Father: {fileID: 1626029407}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -770,7 +770,7 @@ RectTransform:
   m_Children:
   - {fileID: 1448257263}
   m_Father: {fileID: 1626029407}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -938,6 +938,7 @@ GameObject:
   - component: {fileID: 1626029406}
   - component: {fileID: 1626029405}
   - component: {fileID: 1626029404}
+  - component: {fileID: 1626029408}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1012,10 +1013,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 1023922895}
   - {fileID: 722262802}
   - {fileID: 1430298441}
   - {fileID: 381837466}
-  - {fileID: 1023922895}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1024,6 +1025,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1626029408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1626029403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e18c8ec0da54887ac2811223d491a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backBtn: {fileID: 1023922896}
+  lvl1Btn: {fileID: 722262803}
+  lvl2Btn: {fileID: 1430298442}
+  lvl3Btn: {fileID: 381837467}
 --- !u!1 &1857408187
 GameObject:
   m_ObjectHideFlags: 0
