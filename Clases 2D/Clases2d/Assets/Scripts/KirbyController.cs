@@ -6,6 +6,8 @@ public class KirbyController : MonoBehaviour {
 
 	public float velocity;
 	public float jump;
+    public AudioSource coinsSound;
+    public GameObject parentExplosion;
 
     private bool isMoving = false;
     private Animator kirbyAnimator;
@@ -48,11 +50,42 @@ public class KirbyController : MonoBehaviour {
         kirbyAnimator.SetBool("kirbyIsOnFloor", isStart);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision) {
+        string tag = collision.gameObject.tag;
+        switch (tag) {
+            case "Coin":
+                coinsSound.Play();
+                GameObject newExplosion = GameObject.Instantiate(Resources.Load("Prefabs/Explosion") as GameObject);
+                newExplosion.transform.position = collision.gameObject.transform.position;
+                newExplosion.name = "NewExplosion";
+                newExplosion.transform.parent = parentExplosion.transform;
+                Destroy(collision.gameObject);
+                Destroy(newExplosion, 5);
+                break;
+            default:
+                break;
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision) {
-        startKirbyAnimation(true);
+        string tag = collision.collider.gameObject.tag;
+        switch (tag) {
+            case "Platform":
+                startKirbyAnimation(true);
+                break;
+            default:
+                break;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision) {
-        startKirbyAnimation(false);
+        string tag = collision.collider.gameObject.tag;
+        switch (tag) {
+            case "Platform":
+                startKirbyAnimation(false);
+                break;
+            default:
+                break;
+        }
     }
 }
