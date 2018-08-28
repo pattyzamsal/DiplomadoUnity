@@ -636,8 +636,8 @@ GameObject:
   - component: {fileID: 2075331783}
   - component: {fileID: 2075331782}
   - component: {fileID: 2075331781}
-  - component: {fileID: 2075331784}
   - component: {fileID: 2075331780}
+  - component: {fileID: 2075331784}
   m_Layer: 5
   m_Name: MainCanvas
   m_TagString: Untagged
@@ -730,7 +730,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2075331779}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39f3d7a50f3b74907a1321ab92175a85, type: 3}
+  m_Script: {fileID: 11500000, guid: e5314741f06a53e45bb8cd71fe8597ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playBtn: {fileID: 713264710}
