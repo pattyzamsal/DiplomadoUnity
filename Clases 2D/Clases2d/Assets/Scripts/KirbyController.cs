@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KirbyController : MonoBehaviour {
 
@@ -8,12 +9,14 @@ public class KirbyController : MonoBehaviour {
 	public float jump;
     public AudioSource coinsSound;
     public GameObject parentExplosion;
+    public Text scoreText;
 
     private bool isMoving = false;
     private Animator kirbyAnimator;
     private SpriteRenderer kirbySprite;
     private Rigidbody2D kirbyRigidbody;
     private AudioSource kirbyAudioSource;
+    private int score = 0;
 
 	// Use this for initialization
 	void Awake () {
@@ -59,6 +62,8 @@ public class KirbyController : MonoBehaviour {
                 newExplosion.transform.position = collision.gameObject.transform.position;
                 newExplosion.name = "NewExplosion";
                 newExplosion.transform.parent = parentExplosion.transform;
+                score += 100;
+                scoreText.text = "Score: " + score.ToString();
                 Destroy(collision.gameObject);
                 Destroy(newExplosion, 5);
                 break;
