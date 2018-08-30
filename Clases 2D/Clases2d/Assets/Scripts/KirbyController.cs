@@ -10,6 +10,9 @@ public class KirbyController : MonoBehaviour {
     public AudioSource coinsSound;
     public GameObject parentExplosion;
     public Text scoreText;
+    public Slider slider;
+    public GameObject panelGameOver;
+    public GameObject panelWin;
 
     private bool isMoving = false;
     private Animator kirbyAnimator;
@@ -17,6 +20,10 @@ public class KirbyController : MonoBehaviour {
     private Rigidbody2D kirbyRigidbody;
     private AudioSource kirbyAudioSource;
     private int score = 0;
+    private float life = 1;
+    private float minusLife = 0.2f;
+    private bool gameOver = false;
+    private bool win = false;
 
 	// Use this for initialization
 	void Awake () {
@@ -24,30 +31,48 @@ public class KirbyController : MonoBehaviour {
         kirbyRigidbody = this.gameObject.GetComponent<Rigidbody2D>();
         kirbyAudioSource = this.gameObject.GetComponent<AudioSource>();
         kirbyAnimator = this.gameObject.GetComponent<Animator>();
+        slider.value = life;
+        panelGameOver.SetActive(false);
     }
 	
 	// Update is called once per frame
 	void Update () {
-        isMoving = false;
-        // We detect when the user is pressing
-        if (Input.GetKey(KeyCode.RightArrow)) {
-            this.transform.Translate(Vector2.right * Time.deltaTime * velocity);
-            isMoving = true;
-            kirbySprite.flipX = false;
-        } else if (Input.GetKey(KeyCode.LeftArrow)) {
-            this.transform.Translate(Vector2.left * Time.deltaTime * velocity);
-            isMoving = true;
-            kirbySprite.flipX = true;
+        if (!gameOver && !win) {
+            isMoving = false;
+            // We detect when the user is pressing
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                this.transform.Translate(Vector2.right * Time.deltaTime * velocity);
+                isMoving = true;
+                kirbySprite.flipX = false;
+            }
+            else if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                this.transform.Translate(Vector2.left * Time.deltaTime * velocity);
+                isMoving = true;
+                kirbySprite.flipX = true;
+            }
+            kirbyAnimator.SetBool("kirbyIsMoving", isMoving);
+        } else {
+            if (gameOver) {
+                panelGameOver.SetActive(true);
+            }
+            if (win) {
+                panelWin.SetActive(true);
+            }
         }
-        kirbyAnimator.SetBool("kirbyIsMoving", isMoving);
     }
 
 	void FixedUpdate() {
 		if (Input.GetKeyDown(KeyCode.UpArrow)) {
-            kirbyRigidbody.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
-            kirbyAudioSource.Play();
+            executeJump();
         }
 	}
+
+    public void executeJump() {
+        kirbyRigidbody.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
+        kirbyAudioSource.Play();
+    }
 
     private void startKirbyAnimation(bool isStart) {
         kirbyAnimator.SetBool("kirbyIsOnFloor", isStart);
@@ -66,6 +91,9 @@ public class KirbyController : MonoBehaviour {
                 scoreText.text = "Score: " + score.ToString();
                 Destroy(collision.gameObject);
                 Destroy(newExplosion, 5);
+                if (score == 500) {
+                    win = true;
+                }
                 break;
             default:
                 break;
@@ -77,6 +105,16 @@ public class KirbyController : MonoBehaviour {
         switch (tag) {
             case "Platform":
                 startKirbyAnimation(true);
+                break;
+            case "Enemy":
+                startKirbyAnimation(true);
+                kirbyRigidbody.AddForce(Vector2.right * -2, ForceMode2D.Impulse);
+                life -= minusLife;
+                slider.value = life;
+                Debug.Log(life);
+                if (life <= 0.0f) {
+                    gameOver = true;
+                }
                 break;
             default:
                 break;
