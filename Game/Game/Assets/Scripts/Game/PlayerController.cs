@@ -21,14 +21,18 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey(KeyCode.RightArrow)) {
-			this.transform.Translate(Vector2.right * Time.deltaTime * velocityMovement);
+        if (Input.GetKey(KeyCode.RightArrow)) {
+            this.transform.Translate(Vector2.right * Time.deltaTime * velocityMovement);
             playerSprite.flipX = false;
         } else if (Input.GetKey(KeyCode.LeftArrow)) {
             this.transform.Translate(Vector2.left * Time.deltaTime * velocityMovement);
             playerSprite.flipX = true;
+        } else if (Input.GetKeyDown(KeyCode.E)) {
+            // TODO excute animation of bark
+        } else if (Input.GetKey(KeyCode.DownArrow)) {
+            Debug.Log("excavar");
         }
-	}
+    }
 
 	void FixedUpdate() {
 		if (Input.GetKeyDown(KeyCode.UpArrow)) {
@@ -45,6 +49,9 @@ public class PlayerController : MonoBehaviour {
         switch (tag) {
             case "Outside":
                 Debug.Log("It is an outside of the world");
+                break;
+            case "BigEnemy":
+                Debug.Log("Big enemy");
                 break;
             default:
                 break;
