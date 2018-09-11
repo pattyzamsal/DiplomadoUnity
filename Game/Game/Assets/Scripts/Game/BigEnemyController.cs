@@ -39,14 +39,13 @@ public class BigEnemyController : MonoBehaviour {
         return Vector2.Distance(player.transform.position, this.transform.position) < 5f;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
+    private void OnTriggerStay2D(Collider2D collision) {
         string tag = collision.gameObject.tag;
-        switch (tag)
-        {
+        switch (tag) {
             case "Trap":
-                Debug.Log("Enemy in trap");
-                activateMovement = false;
+                if (Mathf.Min(collision.gameObject.transform.position.x, this.transform.position.x) == this.transform.position.x) {
+                    activateMovement = false;
+                }
                 break;
             default:
                 break;

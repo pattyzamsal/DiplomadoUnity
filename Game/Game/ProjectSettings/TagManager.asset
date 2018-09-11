@@ -4,10 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Plataform
   - Outside
   - BigEnemy
   - Trap
+  - Platform
   layers:
   - Default
   - TransparentFX

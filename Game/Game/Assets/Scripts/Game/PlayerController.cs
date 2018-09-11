@@ -8,15 +8,17 @@ public class PlayerController : MonoBehaviour {
 	public Camera mainCamera;	
 
 	private float velocityMovement = 2.0f;
-	private float forceJump = 5.0f;
+    private float forceJump = 5.0f;
 
 	private SpriteRenderer playerSprite;
 	private Rigidbody2D playerRigidbody;
+    private Animator playerAnimator;
 
 	// Use this for initialization
 	void Awake () {
 		playerSprite = this.gameObject.GetComponent<SpriteRenderer>();
 		playerRigidbody = this.gameObject.GetComponent<Rigidbody2D>();
+        playerAnimator = this.gameObject.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate() {
 		if (Input.GetKeyDown(KeyCode.UpArrow)) {
             playerRigidbody.AddForce(Vector2.up * forceJump, ForceMode2D.Impulse);
+            activateAnimation(true);
         }
 	}
 
@@ -53,9 +56,15 @@ public class PlayerController : MonoBehaviour {
             case "BigEnemy":
                 Debug.Log("Big enemy");
                 break;
+            case "Platform":
+                activateAnimation(false);
+                break;
             default:
                 break;
         }
     }
 
+    private void activateAnimation(bool activate) {
+        playerAnimator.SetBool("isJump", activate);
+    }
 }
