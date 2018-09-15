@@ -36,7 +36,7 @@ public class BigEnemyController : MonoBehaviour {
     }
 
     bool playerIsClose() {
-        return Vector2.Distance(player.transform.position, this.transform.position) < 5f;
+        return Vector2.Distance(player.transform.position, this.transform.position) < 8f;
     }
 
     private void OnTriggerStay2D(Collider2D collision) {
