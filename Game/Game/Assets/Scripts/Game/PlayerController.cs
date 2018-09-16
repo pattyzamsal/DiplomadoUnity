@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour {
     private bool isJump = false;
     private bool isWalk = false;
     private bool isBark = false;
+    private bool isDig = false;
+    private bool isGameOver = false;
 
 	private SpriteRenderer playerSprite;
 	private Rigidbody2D playerRigidbody;
@@ -27,22 +29,33 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(KeyCode.RightArrow)) {
-            this.transform.Translate(Vector2.right * Time.deltaTime * velocityMovement);
-            playerSprite.flipX = false;
-            isWalk = true;
-        } else if (Input.GetKey(KeyCode.LeftArrow)) {
-            this.transform.Translate(Vector2.left * Time.deltaTime * velocityMovement);
-            playerSprite.flipX = true;
-            isWalk = true;
-        } else if (Input.GetKey(KeyCode.DownArrow)) {
-            Debug.Log("excavar");
-        } else if (Input.GetKeyDown(KeyCode.E)) {
-            isBark = true;
-        } else if (Input.GetKeyUp(KeyCode.E)) {
-            isBark = false;
-        } else if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow)) {
-            isWalk = false;
+        if (!isGameOver) {
+            if (Input.GetKey(KeyCode.RightArrow)) {
+                this.transform.Translate(Vector2.right * Time.deltaTime * velocityMovement);
+                playerSprite.flipX = false;
+            } else if (Input.GetKey(KeyCode.LeftArrow)) {
+                this.transform.Translate(Vector2.left * Time.deltaTime * velocityMovement);
+                playerSprite.flipX = true;
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow)) {
+                isDig = true;
+            } else if (Input.GetKeyUp(KeyCode.DownArrow)) {
+                isDig = false;
+            } else if (Input.GetKeyDown(KeyCode.E)) {
+                isBark = true;
+            } else if (Input.GetKeyUp(KeyCode.E)) {
+                isBark = false;
+            } else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow)) {
+                isWalk = true;
+            } else if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow)) {
+                isWalk = false;
+            } else if (Input.GetKeyDown(KeyCode.UpArrow)) {
+                isWalk = false;
+                isDig = false;
+                isJump = true;
+            }
+        } else {
+
         }
         activateAnimation();
     }
@@ -65,6 +78,7 @@ public class PlayerController : MonoBehaviour {
                 break;
             case "BigEnemy":
                 Debug.Log("Big enemy");
+                isGameOver = true;
                 break;
             case "Platform":
                 isOnFloor = true;
@@ -80,7 +94,6 @@ public class PlayerController : MonoBehaviour {
         switch (tag) {
             case "Platform":
                 isOnFloor = false;
-                isJump = true;
                 break;
             default:
                 break;
@@ -92,5 +105,7 @@ public class PlayerController : MonoBehaviour {
         playerAnimator.SetBool("isOnFloor", isOnFloor);
         playerAnimator.SetBool("isWalk", isWalk);
         playerAnimator.SetBool("isBark", isBark);
+        playerAnimator.SetBool("isDig", isDig);
+        playerAnimator.SetBool("isDead", isGameOver);
     }
 }

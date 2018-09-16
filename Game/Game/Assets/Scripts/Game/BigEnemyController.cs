@@ -11,9 +11,15 @@ public class BigEnemyController : MonoBehaviour {
     private bool activateMovement = false;
     private GameObject player;
 
+    private Rigidbody2D enemyRigidbody;
+
+    private void Awake() {
+        enemyRigidbody = this.gameObject.GetComponent<Rigidbody2D>();
+        player = GameObject.Find("Player");
+    }
+
     // Use this for initialization
     void Start () {
-        player = GameObject.Find("Player");
         calcuateNewMovementVector();
     }
 	
@@ -22,11 +28,8 @@ public class BigEnemyController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.E) && playerIsClose()) {
             activateMovement = true;
         }
-        if (activateMovement)
-        {
+        if (activateMovement) {
             transform.position = new Vector2(transform.position.x + (movementPerSecond.x * Time.deltaTime), transform.position.y);
-        }
-        else {
         }
     }
 
@@ -45,6 +48,8 @@ public class BigEnemyController : MonoBehaviour {
             case "Trap":
                 if (Mathf.Min(collision.gameObject.transform.position.x, this.transform.position.x) == this.transform.position.x) {
                     activateMovement = false;
+                    collision.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 0;
+                    Destroy(this.gameObject);
                 }
                 break;
             default:
