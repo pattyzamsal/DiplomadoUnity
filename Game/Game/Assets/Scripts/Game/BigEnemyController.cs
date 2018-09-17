@@ -12,9 +12,11 @@ public class BigEnemyController : MonoBehaviour {
     private GameObject player;
 
     private Rigidbody2D enemyRigidbody;
+    private Animator enemyAnimator;
 
     private void Awake() {
         enemyRigidbody = this.gameObject.GetComponent<Rigidbody2D>();
+        enemyAnimator = this.gameObject.GetComponent<Animator>();
         player = GameObject.Find("Player");
     }
 
@@ -31,6 +33,7 @@ public class BigEnemyController : MonoBehaviour {
         if (activateMovement) {
             transform.position = new Vector2(transform.position.x + (movementPerSecond.x * Time.deltaTime), transform.position.y);
         }
+        activateAnimation();
     }
 
     void calcuateNewMovementVector() {
@@ -55,5 +58,9 @@ public class BigEnemyController : MonoBehaviour {
             default:
                 break;
         }
+    }
+
+    private void activateAnimation() {
+        enemyAnimator.SetBool("isMoving", activateMovement);
     }
 }
