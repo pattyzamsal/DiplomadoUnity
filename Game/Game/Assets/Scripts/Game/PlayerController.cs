@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
     private float forceJump = 8.0f;
     private bool isOnFloor = true;
     private bool isJump = false;
-    private bool isWalk = false;
+    public bool isWalk = false;
     private bool isBark = false;
     private bool isDig = false;
     private bool isGameOver = false;
@@ -77,7 +77,6 @@ public class PlayerController : MonoBehaviour {
                 Debug.Log("It is an outside of the world");
                 break;
             case "BigEnemy":
-                Debug.Log("Big enemy");
                 isGameOver = true;
                 break;
             case "Platform":
