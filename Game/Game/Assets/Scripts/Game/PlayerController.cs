@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour {
                 isJump = true;
             }
         } else {
-
+            isWalk = false;
         }
         activateAnimation();
     }
