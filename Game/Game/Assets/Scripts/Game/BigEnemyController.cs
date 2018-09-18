@@ -51,7 +51,7 @@ public class BigEnemyController : MonoBehaviour {
             case "Trap":
                 if (Mathf.Min(collision.gameObject.transform.position.x, this.transform.position.x) == this.transform.position.x) {
                     activateMovement = false;
-                    collision.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 0;
+                    collision.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
                     Destroy(this.gameObject);
                 }
                 break;
