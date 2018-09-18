@@ -429,7 +429,7 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51a9d7683f38a40009b644c4941aecdc, type: 2}
   m_IsPrefabAsset: 0
---- !u!1001 &1310318799
+--- !u!1001 &904965348
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -697,8 +697,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1460222722}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.89, y: -3.32, z: 20}
-  m_LocalScale: {x: 50.1, y: 17.494398, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 20}
+  m_LocalScale: {x: 20, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 1886404726}
   m_RootOrder: 0
