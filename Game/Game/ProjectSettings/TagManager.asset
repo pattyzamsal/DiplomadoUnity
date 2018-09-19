@@ -8,6 +8,8 @@ TagManager:
   - BigEnemy
   - Trap
   - Platform
+  - Coin
+  - Enemy
   layers:
   - Default
   - TransparentFX
