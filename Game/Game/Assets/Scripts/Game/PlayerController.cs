@@ -83,6 +83,9 @@ public class PlayerController : MonoBehaviour {
                 isOnFloor = true;
                 isJump = false;
                 break;
+            case "Enemy":
+                Debug.Log("enemy");
+                break;
             default:
                 break;
         }
@@ -93,6 +96,17 @@ public class PlayerController : MonoBehaviour {
         switch (tag) {
             case "Platform":
                 isOnFloor = false;
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        string tag = collision.gameObject.tag;
+        switch (tag) {
+            case "Coin":
+                Debug.Log("coin y player");
                 break;
             default:
                 break;
