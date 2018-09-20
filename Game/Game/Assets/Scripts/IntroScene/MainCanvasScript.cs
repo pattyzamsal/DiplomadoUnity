@@ -20,7 +20,7 @@ public class MainCanvasScript : MonoBehaviour {
 	}
 
     void PlayOnClick() {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("LevelScene");
     }
 
     void ExitOnClick() {

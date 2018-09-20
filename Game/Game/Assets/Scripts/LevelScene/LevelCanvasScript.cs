@@ -17,16 +17,16 @@ public class LevelCanvasScript : MonoBehaviour {
         Button btn4 = lvl3Btn.GetComponent<Button>();
 
         btn1.onClick.AddListener(BackOnClick);
-        btn2.onClick.AddListener(delegate { ChargeLevel(2); });
-        btn3.onClick.AddListener(delegate { ChargeLevel(3); });
-        btn4.onClick.AddListener(delegate { ChargeLevel(4); });
+        btn2.onClick.AddListener(delegate { ChargeLevel("Lvl1Scene"); });
+        btn3.onClick.AddListener(delegate { ChargeLevel("Lvl2Scene"); });
+        btn4.onClick.AddListener(delegate { ChargeLevel("Lvl3Scene"); });
     }
 
 	void BackOnClick() {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("IntroScene");
     }
 
-    void ChargeLevel(int level) {
+    void ChargeLevel(string level) {
         SceneManager.LoadScene(level);
     }
 }
