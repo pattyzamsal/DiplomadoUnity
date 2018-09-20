@@ -6,15 +6,18 @@ public class PlayerController : MonoBehaviour {
 
     [Tooltip("Pass the main camera of the scene")]
 	public Camera mainCamera;	
+	public float velocityMovement = 2.0f;
+    public float forceJump = 8.0f;
+    public int score = 0;
+    public bool isGameOver = false;
 
-	private float velocityMovement = 2.0f;
-    private float forceJump = 8.0f;
     private bool isOnFloor = true;
     private bool isJump = false;
     public bool isWalk = false;
     private bool isBark = false;
     private bool isDig = false;
-    private bool isGameOver = false;
+    //private int lifes = 3;
+    private int valueOfbone = 100;
 
 	private SpriteRenderer playerSprite;
 	private Rigidbody2D playerRigidbody;
@@ -26,9 +29,9 @@ public class PlayerController : MonoBehaviour {
 		playerRigidbody = this.gameObject.GetComponent<Rigidbody2D>();
         playerAnimator = this.gameObject.GetComponent<Animator>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
         if (!isGameOver) {
             if (Input.GetKey(KeyCode.RightArrow)) {
                 this.transform.Translate(Vector2.right * Time.deltaTime * velocityMovement);
@@ -106,7 +109,8 @@ public class PlayerController : MonoBehaviour {
         string tag = collision.gameObject.tag;
         switch (tag) {
             case "Coin":
-                Debug.Log("coin y player");
+                score += valueOfbone;
+                Destroy(collision.gameObject);
                 break;
             default:
                 break;
