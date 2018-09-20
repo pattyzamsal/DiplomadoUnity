@@ -5,17 +5,15 @@ using UnityEngine;
 
 public class BigEnemyController : MonoBehaviour {
 
-    private float characterVelocity = 2f;
+    public float characterVelocity = 2f;
+
     private Vector2 movementDirection;
     private Vector2 movementPerSecond;
     private bool activateMovement = false;
     private GameObject player;
-
-    private Rigidbody2D enemyRigidbody;
     private Animator enemyAnimator;
 
     private void Awake() {
-        enemyRigidbody = this.gameObject.GetComponent<Rigidbody2D>();
         enemyAnimator = this.gameObject.GetComponent<Animator>();
         player = GameObject.Find("Player");
     }
