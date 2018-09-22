@@ -50,6 +50,8 @@ public class BigEnemyController : MonoBehaviour {
                 if (Mathf.Min(collision.gameObject.transform.position.x, this.transform.position.x) == this.transform.position.x) {
                     activateMovement = false;
                     collision.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                    Transform flowers = collision.gameObject.transform.Find("flowers");
+                    // Todo resolver como desactivar un hijo en el game object
                     Destroy(this.gameObject);
                 }
                 break;
